@@ -1,0 +1,8 @@
+.git
+node_modules
+dist
+backend/model
+**/__pycache__
+.env
+.env.*
+public/lyra-source.zip

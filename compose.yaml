@@ -1,0 +1,18 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./backend/model:/models:ro
+    environment:
+      MODEL_DIR: /models
+      REQUIRE_AUTH: ${REQUIRE_AUTH:-true}
+      TIDECLOAK_ISSUER: ${TIDECLOAK_ISSUER:-}
+      TIDECLOAK_AUDIENCE: ${TIDECLOAK_AUDIENCE:-}
+      TIDECLOAK_JWKS_URL: ${TIDECLOAK_JWKS_URL:-}
+      APP_ORIGINS: http://localhost:4173
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
